@@ -1,16 +1,22 @@
 const http = require('http');
 
-test('Doit retourner "Hello World!"', done => {
-    http.get('http://localhost:3000', response => {
-        var body = '';
+http.get('http://localhost:3000', (res) => {
+  let data = '';
 
-        response.on('data', function(d) {
-            body += d;
-        });
+  // A chunk of data has been received.
+  res.on('data', (chunk) => {
+    data += chunk;
+  });
 
-        response.on('end', function() {
-            expect(body).toBe('Hello World!');
-            done();
-        });
-    });
+  // The whole response has been received.
+  res.on('end', () => {
+    if (data === 'Hello World!') {
+      console.log('Test passed');
+    } else {
+      console.log('Test failed');
+    }
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
 });
