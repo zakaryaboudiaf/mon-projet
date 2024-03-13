@@ -1,11 +1,22 @@
-const express = require('express');
-const app = express();
+const http = require('http');
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+http.get('http://localhost:3000', (res) => {
+  let data = '';
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000');
+  // A chunk of data has been received.
+  res.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  // The whole response has been received.
+  res.on('end', () => {
+    if (data === 'Hello World!') {
+      console.log('Test passed');
+    } else {
+      console.log('Test failed');
+    }
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
 });
-//
