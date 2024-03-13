@@ -9,7 +9,7 @@ http.get('http://localhost:3000', (res) => {
 
   
   res.on('end', () => {
-    if (data === 'Hello World!') {
+    if (data === 'Hello Worl!') {
       console.log('Test passed');
     } else {
       console.log('Test failed');
