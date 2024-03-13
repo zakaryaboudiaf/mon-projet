@@ -11,13 +11,13 @@ pipeline {
         stage('Run App') {
             steps {
                 echo 'Running app...'
-                bat 'node app.js'
+                bat 'start /B node app.js'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                bat 'node test.js'
+                bat 'npm test'
             }
         }
     }
