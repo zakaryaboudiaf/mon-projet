@@ -1,3 +1,6 @@
+const mocha = require('mocha');
+const describe = mocha.describe;
+const it = mocha.it;
 const assert = require('assert');
 const http = require('http');
 
@@ -17,3 +20,4 @@ describe('Test de l\'application', function() {
         });
     });
 });
+//
